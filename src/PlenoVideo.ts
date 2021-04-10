@@ -27,15 +27,19 @@ export default class PlenoVideo extends LitElement {
 
   protected render(): TemplateResult {
     return html`
-      <video id="video" controls preload="auto"></video>
+      <video id="video" autoplay muted controls preload="auto"></video>
     `;
   }
 
   static get styles(): CSSResult {
     return css`
+      :host {
+        display: block;
+        height: 100%;
+      }
+
       video {
         width: 100%;
-        height: 100%;
       }
     `;
   }
