@@ -1,7 +1,11 @@
 // import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
 
 /** Use Hot Module replacement by adding --hmr to the start command */
+import { fromRollup } from '@web/dev-server-rollup';
+import commonjs from '@rollup/plugin-commonjs';
+
 const hmr = process.argv.includes('--hmr');
+const wdsCommonjs = fromRollup(commonjs);
 
 export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
   nodeResolve: true,
@@ -20,6 +24,7 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
   // },
 
   plugins: [
+    wdsCommonjs()
     /** Use Hot Module Replacement by uncommenting. Requires @open-wc/dev-server-hmr plugin */
     // hmr && hmrPlugin({ exclude: ['**/*/node_modules/**/*'], presets: [presets.litElement] }),
   ],
